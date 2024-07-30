@@ -1,5 +1,5 @@
 services:
-  api:
+  api_flask:
     restart: always
     image: hamidovsiyovush/flask_app:latest
     container_name: my_app

@@ -4,4 +4,4 @@ services:
     image: hamidovsiyovush/flask_app:latest
     container_name: my_app
     ports:
-      - 5000:5000
+      - 6969:5000

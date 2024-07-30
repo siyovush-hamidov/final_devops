@@ -28,9 +28,9 @@ jobs:
         with:
           push: true
           tags: |
-            ${{ secrets.DOCKER_USER_NAME }}/my-flask-app:v1.0.${{ github.run_number }}
-            ${{ secrets.DOCKER_USER_NAME }}/my-flask-app:latest
-          context: DevOps
+            ${{ secrets.DOCKER_USER_NAME }}/flask_app:v1.0.${{ github.run_number }}
+            ${{ secrets.DOCKER_USER_NAME }}/flask_app:latest
+          context: project
 
       - name: Deploy with Ansible
         uses: dawidd6/action-ansible-playbook@v2

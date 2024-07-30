@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hamidov Siyovush2</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="hero">
+        <script src="https://scripts.sirv.com/sirvjs/v3/sirv.js"></script>
+        <nav>
+            <img src="{{ url_for('static', filename='images/logo-purple.png') }}" class="logo" width="7.5%" height="7.5%">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Portfolio</a></li>
+                <li><a href="#">Contacts</a></li>     
+            </ul>
+        </nav>
+        <div class="detail">
+            <h1>I'm Siyovush</h1>
+            <h2>Smart Contract Auditor</h2>
+            <p style="line-height: 2;">Delving into the intricate world of blockchain technology, <br>
+                this website serves as a testament to my unwavering commitment to excellence. <br>
+                Join me on a journey where innovation meets meticulous attention to detail. <br>
+                </p>
+            <a href="#">Download CV</a>
+        </div>
+        
+        <div class="eth-logo">
+        <img class="Sirv eth-purple" src="{{ url_for('static', filename='images/eth-logo-purple.png') }}">
+        <img class="Sirv eth-white" src="{{ url_for('static', filename='images/eth-logo-white.png') }}">
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,69 @@
+---
+- name: deploy_flask
+  hosts: ec2_hosts
+  gather_facts: no
+  become: true
+
+  tasks:
+    - name: Install required system packages
+      apt:
+        pkg:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - software-properties-common
+          - python3-pip
+          - virtualenv
+          - python3-setuptools
+          - python3-docker
+        state: latest
+
+    - name: Add Docker GPG apt Key
+      apt_key:
+        url: "https://download.docker.com/linux/ubuntu/gpg"
+        state: present
+
+    - name: Add Docker Repository
+      apt_repository:
+        repo: "deb https://download.docker.com/linux/ubuntu focal stable"
+        state: present
+
+    - name: Update apt and install docker-ce
+      apt:
+        pkg:
+          - docker-ce
+          - docker-compose
+        state: latest
+
+    - name: Create application directory
+      file:
+        path: "/home/ubuntu/final/"
+        state: directory
+        owner: ubuntu
+        group: ubuntu
+        mode: 0775
+
+    - name: Copy docker-compose.yml
+      copy:
+        src: "docker-compose.yml"
+        dest: "/home/ubuntu/final/docker-compose.yml"
+        owner: ubuntu
+        group: ubuntu
+        mode: 0644
+
+    - name: Stop Docker services
+      community.docker.docker_compose_v2:
+        project_src: /home/ubuntu/final
+        state: absent
+
+    - name: Pull Docker images
+      community.docker.docker_compose_v2:
+        project_src: /home/ubuntu/final
+        state: present
+        pull: always
+
+    - name: Start Docker services
+      community.docker.docker_compose_v2:
+        project_src: /home/ubuntu/final
+        state: present
+        recreate: always
